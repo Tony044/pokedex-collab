@@ -100,6 +100,7 @@ async function fetchPokemon(pokemon) {
             picture: data.sprites.other["official-artwork"].front_default,
             types: data.types
         }
+        console.log("coucou")
         response = await fetch(pokemonSpeciesURL);
         const description = await response.json();
         data = {...data, description: description.flavor_text_entries[0].flavor_text}
@@ -137,7 +138,7 @@ function Pokemon({handleInput}) {
                         <div className="pokemon-types">{JSON.stringify(pokemonData.types)}</div>
                         <div className="pokemon-description">
                             <p>
-                                {pokemonData.description.replace(/\n/, " ").replace(`\u000c`, " ")}
+                                {pokemonData.description?.replace(/\n/, " ").replace(`\u000c`, " ")}
                             </p>
                         </div>
                         <div className="pokemon-id">{pokemonData.id}</div>

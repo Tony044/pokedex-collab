@@ -87,32 +87,40 @@ function Home({pokemons, handleInput}) {
     );
 }
 
+async function fetchPokemon(pokemon) {
+    let data = {};
+
+    try {
+        let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+        data = await response.json();
+        const pokemonSpeciesURL = data.species.url;
+        data = {
+            id: data.id,
+            name: data.name,
+            picture: data.sprites.other["official-artwork"].front_default,
+            types: data.types
+        }
+        response = await fetch(pokemonSpeciesURL);
+        const description = await response.json();
+        data = {...data, description: description.flavor_text_entries[0].flavor_text}
+    } catch (error) {
+        console.error(error.message);
+    }
+    return data
+}
+
 function Pokemon({handleInput}) {
     const {pokemon} = useParams();
-    console.log(pokemon);
-    const [name, setName] = useState(null);
+    const [pokemonData, setPokemonData] = useState({});
+
     useEffect(() => {
-        const getData = async () => {
-            
-            try {
-                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
-                const pokemonResponse = await response.json();
-
-                const id = pokemonResponse.id;
-                const name = pokemonResponse.name;
-                const description = pokemonResponse.species.name;
-                const picture = pokemonResponse.sprites.front_default;
-                
-                console.log(id, name, description, picture);
-
-                setName({ id, name, description, picture});
-            } catch (error) {
-                console.error(error.message);
-            }
+        async function getData() {
+            const data = await fetchPokemon(pokemon);
+            setPokemonData(data);
         }
-        getData();
-    }, []);
 
+        getData();
+    }, [pokemon]);
 
     return (
         <>
@@ -120,6 +128,21 @@ function Pokemon({handleInput}) {
             <main>
                 <p>{pokemon}</p>
                 <SearchBar handleInput={handleInput}/>
+                {pokemonData ?
+                    <section className="pokemon">
+                        <div className="pokemon-name">{pokemonData.name}</div>
+                        <div className="pokemon-picture">
+                            <img src={pokemonData.picture} alt={pokemonData.name}/>
+                        </div>
+                        <div className="pokemon-types">{JSON.stringify(pokemonData.types)}</div>
+                        <div className="pokemon-description">
+                            <p>
+                                {pokemonData.description.replace(/\n/, " ").replace(`\u000c`, " ")}
+                            </p>
+                        </div>
+                        <div className="pokemon-id">{pokemonData.id}</div>
+                    </section> : null
+                }
             </main>
             <Footer/>
         </>
@@ -129,7 +152,7 @@ function Pokemon({handleInput}) {
 function SearchBar({handleInput}) {
     return (
         <input type="text"
-			placeholder="Entrez le nom d'un pokémon"
-            onKeyUp={handleInput}/>
+               placeholder="Entrez le nom d'un pokémon"
+               onKeyUp={handleInput}/>
     )
 }

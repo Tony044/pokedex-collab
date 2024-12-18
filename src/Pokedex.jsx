@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {fetchPagination} from "./pokeAPI/paginationAPI.jsx";
 import {Home} from "./Components/Home.jsx";
 import {Pokemon} from "./Components/Pokemon.jsx";
+import {Layout} from "./Components/Layout.jsx";
 
 export function Pokedex() {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ export function Pokedex() {
 
     return (
         <Routes>
-            <Route path="/">
+            <Route path="/" element={<Layout/>}>
                 <Route index element={<Home pokemons={pokemons} handleInput={handleInput}/>}/>
                 <Route path=":pokemon" element={<Pokemon handleInput={handleInput}/>}/>
             </Route>

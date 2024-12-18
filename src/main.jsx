@@ -9,5 +9,5 @@ createRoot(document.getElementById('root')).render(
         <BrowserRouter>
             <Pokedex />
         </BrowserRouter>
-    </StrictMode>,
+    </StrictMode>
 )

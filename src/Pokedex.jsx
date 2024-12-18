@@ -3,7 +3,8 @@
 // import viteLogo from '/vite.svg'
 import './Pokedex.css'
 import {Route, Routes, useParams, useNavigate} from "react-router";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
+import { use } from 'react';
 
 export function Pokedex() {
     const pokemonRef = useRef(null);
@@ -58,6 +59,31 @@ function Home({pokemonRef, handleInput}) {
 
 function Pokemon({pokemonRef, handleInput}) {
     const {pokemon} = useParams();
+    console.log(pokemon);
+    const [name, setName] = useState(null);
+    useEffect(() => {
+        const getData = async () => {
+            
+            try {
+                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+                const pokemonResponse = await response.json();
+
+                const id = pokemonResponse.id;
+                const name = pokemonResponse.name;
+                const description = pokemonResponse.species.name;
+                const picture = pokemonResponse.sprites.front_default;
+                
+                console.log(id, name, description, picture);
+
+                setName({ id, name, description, picture});
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+        getData();
+    }, []);
+
+
     return (
         <>
             <Header/>
@@ -73,8 +99,8 @@ function Pokemon({pokemonRef, handleInput}) {
 function SearchBar({pokemonRef, handleInput}) {
     return (
         <input type="text"
-               placeholder="Entrez le nom d'un pokémon"
-               ref={pokemonRef}
-               onKeyUp={handleInput}/>
+            placeholder="Entrez le nom d'un pokémon"
+            ref={pokemonRef}
+            onKeyUp={handleInput}/>
     )
 }

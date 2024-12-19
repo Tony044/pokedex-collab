@@ -1,0 +1,19 @@
+.container-title{
+    display: flex;
+    flex-direction: row;
+}
+
+.title-image{
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border: none;
+}
+
+.welcome{
+    font-size: 2em;
+}
+
+.pokemon-list{
+    margin-top: 35px;
+}

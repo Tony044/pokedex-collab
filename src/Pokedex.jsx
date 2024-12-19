@@ -34,7 +34,7 @@ export function Pokedex() {
         <Routes>
             <Route path="/" element={<Layout/>}>
                 <Route index element={<Home pokemons={pokemons} handleInput={handleInput}/>}/>
-                <Route path=":pokemon" loader={fetchPokemon} element={<Pokemon handleInput={handleInput}/>}/>
+                <Route path=":pokemon" element={<Pokemon handleInput={handleInput}/>}/>
             </Route>
         </Routes>
     )

@@ -9,7 +9,6 @@ export function Pokemon({handleInput}) {
 
     useEffect(() => {
         async function getData() {
-            console.log(pokemon)
             const data = await fetchPokemon(pokemon);
             setPokemonData(data);
         }
@@ -21,7 +20,7 @@ export function Pokemon({handleInput}) {
         <>
             <p>{pokemon}</p>
             <SearchBar handleInput={handleInput}/>
-            {pokemonData ?
+            {Object.keys(pokemonData).length ?
                 <section className="pokemon">
                     <div className="pokemon-name">{pokemonData.name}</div>
                     <div className="pokemon-picture">
@@ -32,7 +31,7 @@ export function Pokemon({handleInput}) {
                         <p>{pokemonData.description}</p>
                     </div>
                     <div className="pokemon-id">{pokemonData.id}</div>
-                </section> : null
+                </section> : <section>ERROR 404</section>
             }
         </>
     );

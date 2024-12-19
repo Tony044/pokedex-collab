@@ -1,4 +1,11 @@
 .search-bar{
-    width: 170px;
-    height: 17px;
+    width: 17rem;
+    height: 2rem;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.search-bar::placeholder {
+    text-align: center;
+    font-size: 1.125rem;
 }

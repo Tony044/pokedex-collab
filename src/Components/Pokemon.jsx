@@ -27,7 +27,10 @@ export function Pokemon({handleInput}) {
                         <img src={pokemonData.picture} alt={pokemonData.name}/>
                     </div>
                     <div className="pokemon-types">
+                        <div className="types-content">
                         {pokemonData.types?.map((type) => (<div key={type.type.name}>{type.type.name}</div>))}
+                        </div>
+                        
                     </div>
                     <div className="pokemon-description">
                         <p>
@@ -35,6 +38,7 @@ export function Pokemon({handleInput}) {
                         </p>
                     </div>
                     <div className="pokemon-id">{pokemonData.id}</div>
+                    
                 </section> : null
             }
         </>
@@ -44,3 +48,6 @@ export function Pokemon({handleInput}) {
 function types() {
     pokemonData.types[0].map((slot) => {slot.type.name });
 }
+
+// Separer les deux types en deux div, car actullement dans une seule div
+// Ajouter couoeur de fond en fonction du type

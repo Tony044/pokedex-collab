@@ -1,0 +1,49 @@
+.pokemon{
+    display: grid;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: bisque;
+    grid-template-areas:
+            "title"
+            "picture"
+            "type"
+            "description"
+            "id";
+    grid-template-rows: auto auto auto auto auto;
+    gap: 10px;
+}
+
+.pokemon-name{
+    grid-area: title;
+    font-weight: bold;
+    font-size: 3rem;
+    font-family: "Papyrus";
+    align-self: center;
+    max-width: 475px;
+}
+
+.pokemon-picture{
+    grid-area: picture;
+}
+
+.pokemon-types{
+    grid-area: type;
+    align-self: center;
+    max-width: 475px;
+    font-family: "Papyrus";
+    font-size: 1rem;
+}
+
+.pokemon-description{
+    grid-area: description;
+    align-self: center;
+    max-width: 475px;
+    font-family: "Papyrus";
+    font-size: 1rem;
+}
+
+.pokemon-id{
+    grid-area: id;
+    align-self: center;
+    max-width: 475px;
+}

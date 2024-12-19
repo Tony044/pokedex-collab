@@ -2,6 +2,7 @@ import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {fetchPokemon} from "../pokeAPI/pokemonAPI.jsx";
 import {SearchBar} from "./SearchBar.jsx";
+import "./Pokemon.css"
 
 export function Pokemon({handleInput}) {
     const {pokemon} = useParams();
@@ -18,8 +19,7 @@ export function Pokemon({handleInput}) {
 
     return (
         <>
-            <p>{pokemon}</p>
-            <SearchBar handleInput={handleInput}/>
+            <SearchBar className="searchBar" handleInput={handleInput}/>
             {pokemonData ?
                 <section className="pokemon">
                     <div className="pokemon-name">{pokemonData.name}</div>

@@ -9,6 +9,7 @@ export function Pokemon({handleInput}) {
 
     useEffect(() => {
         async function getData() {
+            console.log(pokemon)
             const data = await fetchPokemon(pokemon);
             setPokemonData(data);
         }
@@ -28,9 +29,7 @@ export function Pokemon({handleInput}) {
                     </div>
                     <div className="pokemon-types">{JSON.stringify(pokemonData.types)}</div>
                     <div className="pokemon-description">
-                        <p>
-                            {pokemonData.description?.replace(/\n/, " ").replace(`\u000c`, " ")}
-                        </p>
+                        <p>{pokemonData.description}</p>
                     </div>
                     <div className="pokemon-id">{pokemonData.id}</div>
                 </section> : null

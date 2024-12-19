@@ -14,7 +14,7 @@ export async function fetchPokemon(pokemon) {
             name: dataPokemon.name,
             picture: dataPokemon.sprites.other["official-artwork"].front_default,
             types: dataPokemon.types,
-            description: dataSpecies.flavor_text_entries[0].flavor_text
+            description: dataSpecies.flavor_text_entries[0].flavor_text.replace(`\u000c`, " ")
         }
     } catch (error) {
         console.error(error.message);

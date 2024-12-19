@@ -5,6 +5,7 @@ import {fetchPagination} from "./pokeAPI/paginationAPI.jsx";
 import {Home} from "./Components/Home.jsx";
 import {Pokemon} from "./Components/Pokemon.jsx";
 import {Layout} from "./Components/Layout.jsx";
+import {fetchPokemon} from "./pokeAPI/pokemonAPI.jsx";
 
 export function Pokedex() {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ export function Pokedex() {
     useEffect(() => {
         async function initPokemons() {
             setPokemons({});
-            if (!isHome) {return;}
+            if (!isHome) return;
             const newPokemons = await fetchPagination();
             setPokemons(newPokemons);
         }
@@ -24,9 +25,7 @@ export function Pokedex() {
     }, [location]);
 
     function handleInput(event) {
-        if (event.key !== "Enter") {
-            return;
-        }
+        if (event.key !== "Enter") return;
         navigate(event.target.value);
         event.target.value = "";
     }
@@ -35,7 +34,7 @@ export function Pokedex() {
         <Routes>
             <Route path="/" element={<Layout/>}>
                 <Route index element={<Home pokemons={pokemons} handleInput={handleInput}/>}/>
-                <Route path=":pokemon" element={<Pokemon handleInput={handleInput}/>}/>
+                <Route path=":pokemon" loader={fetchPokemon} element={<Pokemon handleInput={handleInput}/>}/>
             </Route>
         </Routes>
     )

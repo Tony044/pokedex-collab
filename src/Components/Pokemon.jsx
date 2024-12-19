@@ -26,7 +26,9 @@ export function Pokemon({handleInput}) {
                     <div className="pokemon-picture">
                         <img src={pokemonData.picture} alt={pokemonData.name}/>
                     </div>
-                    <div className="pokemon-types">{JSON.stringify(pokemonData.types)}</div>
+                    <div className="pokemon-types">
+                        {pokemonData.types?.map((type) => (<div key={type.type.name}>{type.type.name}</div>))}
+                    </div>
                     <div className="pokemon-description">
                         <p>
                             {pokemonData.description?.replace(/\n/, " ").replace(`\u000c`, " ")}
@@ -37,4 +39,8 @@ export function Pokemon({handleInput}) {
             }
         </>
     );
+}
+
+function types() {
+    pokemonData.types[0].map((slot) => {slot.type.name });
 }

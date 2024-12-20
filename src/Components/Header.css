@@ -1,0 +1,25 @@
+header {
+    padding: 2.5rem 0;
+    background-image: linear-gradient(red 50%, white 50%);
+
+    .navigation {
+        background-color: black;
+        /*width: fit-content;*/
+
+        .navigation-list {
+            list-style: none;
+            display: grid;
+            grid-auto-flow: column;
+            grid-gap: 3rem;
+            width: fit-content;
+            padding: 0.5rem 2rem;
+
+            li {
+                color: black;
+                background-color: white;
+                border-radius: 15px;
+                padding: 0 1rem;
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import {SearchBar} from "../SearchBar.jsx";
+import {SearchBar} from "./SearchBar.jsx";
 import {useOutletContext} from "react-router";
 
 export function PokemonHome() {
@@ -6,7 +6,6 @@ export function PokemonHome() {
 
     return (
         <>
-            <p>Bienvenue</p>
             <SearchBar handleInput={handleInput}/>
         </>
     );

@@ -1,7 +1,7 @@
 import {useOutletContext, useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {fetchPokemon} from "../../pokeAPI/pokemonAPI.jsx";
-import {SearchBar} from "../SearchBar.jsx";
+import {SearchBar} from "./SearchBar.jsx";
 import "./Pokemon.css"
 
 
@@ -27,20 +27,22 @@ export function Pokemon() {
                 {Object.keys(pokemonData).length ?
                     <>
                         <div className="pokemon-name">{pokemonData.name}</div>
-                        <div className="pokemon-picture">
-                            <img src={pokemonData.picture} alt={pokemonData.name}/>
-                        </div>
-                        <div className="pokemon-types">
+                        <frame className="pokemon-picture">
+                            <img className="pokemon-image" src={pokemonData.picture} alt={pokemonData.name}/>
+                        </frame>
+                        <ul className="pokemon-types">
                             {pokemonData.types.map((type) => (
-                                <div key={type.type.name}>
+                                <li key={type.type.name}>
                                     {type.type.name}
-                                </div>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
                         <div className="pokemon-description">
                             <p>{pokemonData.description}</p>
                         </div>
-                        <div className="pokemon-id">{pokemonData.id}</div>
+                        <div className="pokemon-id">
+                            <p>{pokemonData.id}</p>
+                        </div>
                     </>
                     : <div>Pokemon not found</div>
                 }

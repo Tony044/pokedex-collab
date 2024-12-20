@@ -2,6 +2,8 @@ import {useOutletContext, useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {fetchPokemon} from "../../pokeAPI/pokemonAPI.jsx";
 import {SearchBar} from "../SearchBar.jsx";
+import "./Pokemon.css"
+
 
 export function Pokemon() {
     const handleInput = useOutletContext()

@@ -1,7 +1,10 @@
+import "./SearchBar.css"
+
 export function SearchBar({handleInput}) {
     return (
-        <input type="text"
-               placeholder="Entrez le nom d'un pokémon"
+        <input className="search-bar"
+               type="text"
+               placeholder="Enter the name of a pokemon"
                onKeyUp={handleInput}/>
     )
 }
